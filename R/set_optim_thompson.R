@@ -77,7 +77,7 @@ function(object,
                                latin_grid = T, 
                                enforce_positive_definiteness = F, 
                                acquisition_function = NULL, 
-					 print_colnames = T,
+			       print_colnames = T,
                                stopping_rule_total = NULL,
                                ... ) { 
   
