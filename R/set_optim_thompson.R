@@ -78,7 +78,7 @@ function(object,
                                enforce_positive_definiteness = F, 
                                acquisition_function = NULL, 
 					 print_colnames = T,
-                               stopping_rule_total = NULL, # stopping rule will be considered after this many grid points have been evaluated since improvement 
+                               stopping_rule_total = NULL,
                                ... ) { 
   
 ################################################################################################
