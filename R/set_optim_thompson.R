@@ -1,4 +1,4 @@
-#' Equip ModelSpecification objects in MachineShop with a Thompson Sampler Equipped with Smoothing Splines for Tuning
+#' Equip ModelSpecification objects in MachineShop with a Thompson sampler with smoothing splines for tuning
 #' @param object MachineShop \code{\link[MachineShop]{ModelSpecification}} object
 #' @param times how many total grid points will be evaluated (including initial points evaluated)?
 #' @param initial_points what is the number of randomly sampled points to evaluate initially?
