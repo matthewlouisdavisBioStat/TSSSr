@@ -2,7 +2,7 @@
 % Please edit documentation in R/set_optim_thompson.R
 \name{set_optim_thompson}
 \alias{set_optim_thompson}
-\title{Equip ModelSpecification objects in MachineShop with a Thompson Sampler Equipped with Smoothing Splines for Tuning}
+\title{Equip ModelSpecification objects in MachineShop with a Thompson sampler with smoothing splines for tuning}
 \usage{
 set_optim_thompson(
   object,
@@ -88,7 +88,7 @@ set_optim_thompson(
 A model specification object ready to be fit, equipped with Thompson Sampling with Smoothing Splines.
 }
 \description{
-Equip ModelSpecification objects in MachineShop with a Thompson Sampler Equipped with Smoothing Splines for Tuning
+Equip ModelSpecification objects in MachineShop with a Thompson sampler with smoothing splines for tuning
 }
 \details{
 A custom set_optim_method to be paired with MachineShop for tuning models and inputs using Thompson Sampling with Smoothing Splines.
