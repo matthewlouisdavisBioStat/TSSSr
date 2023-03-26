@@ -1,14 +1,4 @@
-#' Function for performing latin-grid sampling
-#' @param x numeric vector
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
+
 sample_between_intervals <- function(x){
   intervals <- sort(unique(x))
   if(length(intervals) >= length(x)/2){
@@ -28,17 +18,6 @@ sample_between_intervals <- function(x){
 }
 
 
-#' Function for centering and scaling the transformed metric
-#' @param x numeric vector
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
 center_and_scale <- function(x){
   xx <- na.omit(x)
   xx <- xx[is.finite(xx)]
@@ -63,38 +42,12 @@ center_and_scale <- function(x){
   }
 }
 
-#' Function useful for turning cubic expansions into knot expansions
-#' @param mat matrix
-#' @param Q matrix
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
+
 knot_expand2 <- function(mat,Q){
   mat[,rep(1:ncol(mat),ncol(cbind(Q)))] * 
     cbind(Q)[,rep(1:ncol(cbind(Q)),each = ncol(mat))]
 }
 
-#' Variance stabilizing/symmetry-inducing transformations
-#' @param x numeric vector
-#' @param type character
-#' @param pwr_lmbda optional numeric
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
 transf <- function(x,type,pwr_lmbda = NULL,...){
   #pwr_lmbda <- 0
   if(type == 'distance'){
@@ -119,20 +72,6 @@ transf <- function(x,type,pwr_lmbda = NULL,...){
   }
 }
 
-#' variance stablizing/symmetry-inducing back-transformations
-#' @param x numeric vector
-#' @param type character
-#' @param pwr_lmbda optional numeric
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
 un_transf <- function(x,type,pwr_lmbda = NULL,...){
   if(type == 'distance'){
     if(pwr_lmbda != 0){
@@ -149,20 +88,6 @@ un_transf <- function(x,type,pwr_lmbda = NULL,...){
   }
 }
 
-#' Assign a knot group (for quantiles q) to a vector x
-#' @param x numeric vector
-#' @param q numeric vector
-#' @param rev logical
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
 get_group <- function(x,q,rev = F){
   if(length(q) > 1){
     rowsums <- rowSums(sapply(2:length(q),function(qq){
@@ -181,21 +106,7 @@ get_group <- function(x,q,rev = F){
            0)
 }
 
-#' Generate inverse-gamma variables, with error handling
-#' @param n numeric
-#' @param a numeric
-#' @param b numeric
-#' @param s numeric
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
+
 my_rinvgamma <- function(n, a, b, s){
   try <- rgamma(n, 
                 a, 
@@ -220,18 +131,7 @@ my_rinvgamma <- function(n, a, b, s){
 }
 
 
-#' Fix NAs
-#' @param x numeric
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
+
 fixna <- function(x){
   if(any(na.omit(c(is.na(x),
                    is.nan(x),
@@ -242,19 +142,7 @@ fixna <- function(x){
   }
 }
 
-#' First attempting a normal inversion, before resorting to the M.P.G.I.
-#' @param x matrix
-#' @param tol numeric
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
+
 solvetry <- function(x, 
                      tol = sqrt(.Machine$double.eps)){
   t <- try(solve(x),silent = T)
@@ -271,50 +159,15 @@ solvetry <- function(x,
   }
 }
 
-## Apply is.na, is.nan operation to all elements in a vector
-#' @param x numeric vector
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
+
 is.nanf <- function(x){
   sapply(x,function(xx)!is.finite(xx) | is.nan(xx) | is.na(xx))
 }
 
-# Take the l2-norm
-#' @param x numeric vector
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
+
 l2norm2 <- function(x,other_vec = 0)sqrt(mean(x-other_vec)^2)
 
-#' Take a first derivative, with respect to a variable
-#' @param dat matrix 
-#' @param var character
-#' @param stddevs numeric vector
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
+
 first_deriv <- function(dat,var,stdevs){
   cols <- grep(paste0(var,"_degree="),colnames(dat))
   which_sing <- which(colnames(dat) == paste0(var,"_degree=1"))
@@ -344,20 +197,7 @@ first_deriv <- function(dat,var,stdevs){
   dat_deriv
 }
 
-#' Take a second derivative for only interactions
-#' @param dat matrix 
-#' @param var character
-#' @param stddevs numeric vector
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
+
 interact2_deriv <- function(dat,var,stdevs){
   cols <- grep(paste0(var,"_degree="),colnames(dat))
   which_sing <- which(colnames(dat) == paste0(var,"_degree=1"))
@@ -384,20 +224,7 @@ interact2_deriv <- function(dat,var,stdevs){
   dat_deriv
 }
 
-#' Compute second derivatives, no interactions
-#' @param dat matrix 
-#' @param var character
-#' @param stddevs numeric vector
-#'
-#' @details for internal use with set_optim_thompson function
-#'
-#' @return Object of arbitrary class.
-#'
-#' @examples
-#' \donttest{
-#'   # No Examples Shown
-#' }
-#' @export
+
 second_deriv <- function(dat,var,stdevs){
   cols <- grep(paste0(var,"_degree="),colnames(dat))
   which_sing <- which(colnames(dat) == paste0(var,"_degree=1"))
