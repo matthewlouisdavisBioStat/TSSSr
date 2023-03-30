@@ -4,6 +4,8 @@ Thompson Sampling with Smoothing Splines for Hyperparameter Optimization for R. 
 
 The package is centered around the ``set_optim_thompson" function, which can be applied to ModelSpecification objects in MachineShop package for equipping them with the proposed procedure. 
 
+Supplementary Materials and Data are provided as .zip files, and are referenced in the manuscript.
+
 # Supplementary Materials
 
 ## RCode
@@ -42,4 +44,12 @@ The package is centered around the ``set_optim_thompson" function, which can be 
 - mnist_test_performance.RData contains data for the final performance metrics of the CNN.
 - PredictedVsObserved.xlsx contains all of the out-of-sample predictions and actual values on the MNIST test set.
 - TuningHistory.xlsx provides the exhaustive history of grid points evaluated and associated performance when tuning in asynchronous parallel.
+
+# Data
+- bs.RData provides box scores for NBA 2010-2022.
+- game_logs_2010_2022.RData provides game logs for NBA 2010-2022.
+- mnist_test_conv.RData provides a recipe of MNIST test data, in long form.
+- mnist_train_conv.RData provides a recipe of MNIST training data, in long form.
+- Recipes for ames, hnscc, and microbiome are eponymous.
+
 
